@@ -176,3 +176,145 @@ function App() {
 ```
 
 ## 기능 구현
+
+Context와 연동을 하여 기능을 구현한다. Context에 있는 `state`를 받아와서 렌더링을 하고, 필요한 상황에는 특정 액션을 `dispatch` 한다.
+
+### TodoHead
+
+남은 할 일은 `done` 값이 <span style="color:red">false</span>인 항목들의 개수를 화면에 보여준다.
+날짜는 Date의 [toLocaleString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString) 함수를 사용한다.
+
+```js
+...
+
+function TodoHead() {
+  const todos = useTodoState();
+  const undoneTasks = todos.filter((todo) => !todo.done);
+
+  const today = new Date();
+  const dateString = today.toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+  const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
+
+  return (
+    <TodoHeadBlock>
+      <h1>{dateString}</h1>
+      <div className="day">{dayName}</div>
+      <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
+    </TodoHeadBlock>
+  );
+}
+```
+
+### TodoList
+
+TodoList에서는 `state`를 조회하고, `map`함수를 사용하여 TodoItem 컴포넌트를 렌더링해준다.
+
+```js
+import { useTodoState } from '../TodoContext';
+
+...
+
+function TodoList() {
+  const todos = useTodoState();
+
+  return (
+    <TodoListBlock>
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          id={todo.id}
+          text={todo.text}
+          done={todo.done}
+        />
+      ))}
+    </TodoListBlock>
+  );
+}
+```
+
+### TodoItem
+
+`dispatch`를 사용해서 토글 기능과 삭제 기능을 구현해준다.
+
+```js
+import { useTodoDispatch } from '../TodoContext';
+
+...
+
+function TodoItem({ id, done, text }) {
+  const dispatch = useTodoDispatch();
+  const onToggle = () => dispatch({ type: 'TOGGLE', id });
+  const onRemove = () => dispatch({ type: 'REMOVE', id });
+  return (
+    <TodoItemBlock>
+      <CheckCircle done={done} onClick={onToggle}>
+        {done && <MdDone />}
+      </CheckCircle>
+      <Text done={done}>{text}</Text>
+      <Remove onClick={onRemove}>
+        <MdDelete />
+      </Remove>
+    </TodoItemBlock>
+  );
+}
+```
+
+### TodoCreate
+
+`dispatch`를 사용해서 새로운 할 일을 등록하는 생성 기능을 구현해준다. onSubmit에서는 새로운 항목을 추가하는 액션을 `dispatch` 한 후, `value` 초기화 및
+`open` 값을 <span style="color:red">false</span> 로 전환해주었다.
+
+```js
+import { useTodoDispatch, useTodoNextId } from '../TodoContext';
+
+...
+
+function TodoCreate() {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+
+  const dispatch = useTodoDispatch();
+  const nextId = useTodoNextId();
+
+  const onToggle = () => setOpen(!open);
+  const onChange = e => setValue(e.target.value);
+  const onSubmit = e => {
+    e.preventDefault(); // 새로고침 방지
+    dispatch({
+      type: 'CREATE',
+      todo: {
+        id: nextId.current,
+        text: value,
+        done: false
+      }
+    });
+    setValue('');
+    setOpen(false);
+    nextId.current += 1;
+  };
+
+  return (
+    <>
+      {open && (
+        <InsertFormPositioner>
+          <InsertForm onSubmit={onSubmit}>
+            <Input
+              autoFocus
+              placeholder="할 일을 입력 후, Enter 를 누르세요"
+              onChange={onChange}
+              value={value}
+            />
+          </InsertForm>
+        </InsertFormPositioner>
+      )}
+      <CircleButton onClick={onToggle} open={open}>
+        <MdAdd />
+      </CircleButton>
+    </>
+  );
+}
+```
