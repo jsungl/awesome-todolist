@@ -4,11 +4,15 @@
 [![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white)](https://ko.reactjs.org/)
 ![create-react-app supported](https://img.shields.io/badge/CRA-supported-green.svg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and it can be check [here](https://jsungl.github.io/awesome-todolist/).
 
 ## Overview
 
 To-Do List는 작업을 관리하는 매우 간단한 앱입니다. 쇼핑 목록이나 작업 태스크 등 모든 체크리스트로 사용할 수 있습니다.
+
+<p align='center'>
+<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a73d02c6-945a-4faa-927d-0e4255d04506/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220803%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220803T165313Z&X-Amz-Expires=86400&X-Amz-Signature=163d145ae317c1b8cb33352b424084e879f9a78be5adc4f50d73653253cd9471&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject' width='600' alt='To-Do List'>
+</p>
 
 App을 만드는 과정에서 아래의 React 개념들을 활용합니다.
 
