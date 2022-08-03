@@ -181,16 +181,7 @@ Context와 연동을 하여 기능을 구현한다. Context에 있는 `state`�
 
 ### TodoHead
 
-남은 할 일은 `done` 값이 <span style="color:red">false</span>인 항목들의 개수를 화면에 보여준다.
-
-```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
-
+남은 할 일은 `done` 값이 false인 항목들의 개수를 화면에 보여준다.
 날짜는 Date의 [toLocaleString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString) 함수를 사용한다.
 
 ```js
@@ -275,7 +266,7 @@ function TodoItem({ id, done, text }) {
 ### TodoCreate
 
 `dispatch`를 사용해서 새로운 할 일을 등록하는 생성 기능을 구현해준다. onSubmit에서는 새로운 항목을 추가하는 액션을 `dispatch` 한 후, `value` 초기화 및
-`open` 값을 <span style="color:red">false</span> 로 전환해주었다.
+`open` 값을 false로 전환해주었다.
 
 ```js
 import { useTodoDispatch, useTodoNextId } from '../TodoContext';
