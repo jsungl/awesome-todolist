@@ -36,28 +36,7 @@ App을 만드는 과정에서 아래의 React 개념들을 활용합니다.
 ```js
 import React, { useReducer, createContext } from 'react';
 
-const initialTodos = [
-  {
-    id: 1,
-    text: '프로젝트 생성하기',
-    done: true
-  },
-  {
-    id: 2,
-    text: '컴포넌트 스타일링하기',
-    done: true
-  },
-  {
-    id: 3,
-    text: 'Context 만들기',
-    done: false
-  },
-  {
-    id: 4,
-    text: '기능 구현하기',
-    done: false
-  }
-];
+...
 
 function todoReducer(state, action) {
   switch (action.type) {
@@ -89,7 +68,7 @@ export function TodoProvider({ children }) {
 }
 ```
 
-# 커스텀 Hook 만들기
+### 커스텀 Hook 만들기
 
 컴포넌트에서 `useContext`를 직접 사용하는 대신에, `useContext`를 사용하는 커스텀 Hook을 만들어서 내보내준다.
 
@@ -107,7 +86,7 @@ export function useTodoDispatch() {
 }
 ```
 
-# nextId 값 관리하기
+### nextId 값 관리하기
 
 `nextId`값을 위한 Context를 만들어준다. 여기서 `nextId`가 의미하는 값은 새로운 항목을 추가 할 때 사용 할 고유 ID 다. 이 값은 `useRef`를 사용하여 관리해준다.
 
@@ -140,7 +119,7 @@ export function useTodoNextId() {
 }
 ```
 
-# 커스텀 Hook 에서 에러 처리
+### 커스텀 Hook 에서 에러 처리
 
 `seTodoState`, `useTodoDispatch`, `useTodoNextId` Hook을 사용하려면, 해당 컴포넌트가 TodoProvider 컴포넌트 내부에 렌더링되어 있어야 한다.
 TodoProvider로 감싸져있지 않다면 에러를 발생시키도록 한다.
@@ -173,7 +152,7 @@ export function useTodoNextId() {
 }
 ```
 
-# 컴포넌트 TodoProvider로 감싸기
+### 컴포넌트 TodoProvider로 감싸기
 
 프로젝트 모든 곳에서 Todo 관련 Context들을 사용 할 수 있도록, App 컴포넌트에서 TodoProvider를 불러와서 모든 내용을 TodoProvider로 감싸준다.
 
