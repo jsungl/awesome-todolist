@@ -1,7 +1,8 @@
 # To-Do List with React App
 
 [![yarn version](https://badgen.net/npm/v/yarn)](https://classic.yarnpkg.com/en/)
-[![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white)]("https://ko.reactjs.org/")
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white)](https://ko.reactjs.org/)
+![create-react-app supported](https://img.shields.io/badge/CRA-supported-green.svg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
