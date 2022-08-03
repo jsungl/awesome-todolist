@@ -181,7 +181,16 @@ Context와 연동을 하여 기능을 구현한다. Context에 있는 `state`�
 
 ### TodoHead
 
-남은 할 일은 `done` 값이 <span style="color:red !important">false</span>인 항목들의 개수를 화면에 보여준다.
+남은 할 일은 `done` 값이 <span style="color:red">false</span>인 항목들의 개수를 화면에 보여준다.
+
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+
 날짜는 Date의 [toLocaleString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString) 함수를 사용한다.
 
 ```js
